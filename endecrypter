@@ -1,2 +1,23 @@
-Author: Szymon Szymczewski
-pupga
+#!/bin/bash
+#Data: 24-08-2021
+#Author: Szymon Szymczewski
+
+echo "Choose your option"
+choice="Encrypt Decrypt"
+
+select option in $choice; do
+if [ $REPLY = 1 ];
+	then 
+	echo "Enter the file name"
+	read file;
+	gpg -c $file 
+	echo "File has been encrypted"
+	exit 1
+else
+	echo "Enter the file name" 
+	read file2;
+	gpg -d $file2
+	echo "File has been decrypted"
+	exit 1
+fi
+done
