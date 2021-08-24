@@ -1,0 +1,27 @@
+#!/bin/bash 
+
+declare name_of_file
+	echo -n "Name of file/files: "
+		read $name_of_file
+
+declare folder_name
+	echo -n "Name of folder: "
+		read $folder_name
+
+#Directory loop
+
+#Creating directory 
+if [ -d $folder_name]
+	then echo "$folder_name already  exist. "
+	else
+if [ -w $PWD ]
+	then mkdir $folder_name
+	else echo "You dont have permission"
+fi
+fi
+#Moving files into new directory 
+
+mv $name_of_file ~/Desktop/$folder_name
+
+
+

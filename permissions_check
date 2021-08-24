@@ -1,0 +1,10 @@
+#!/bin/bash
+file=$1
+
+if [ -x "$file" ]; then
+echo "File is executable"
+else
+chmod u+x $file 
+echo "File is executable now"
+fi 
+

@@ -1,0 +1,20 @@
+#!/bin/bash
+#Files counter
+counter=0 
+for i in $(ls); do
+counter=$[counter+1]
+done
+
+if [[ "$1" != ""  ]]; then
+echo "Files: $counter"
+#Chatacter Counter
+echo "Characters: $(cat $1 | wc -m)"
+#Words Counter
+echo "Words: $(cat $1  | wc --words)"
+#Lines Counter
+echo "Lines: $(cat $1 | wc --lines)"
+else
+echo "No arguments:  Select file"
+fi 
+
+
