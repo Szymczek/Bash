@@ -1,0 +1,41 @@
+#!/bin/bash
+#Data: 25-08-2021
+#Author: Szymon Szymczewski
+extracter(){
+
+if [ $REPLY = 1 ];
+        then
+        echo "Enter the name of new folder: "
+        read folder_name
+        mkdir $folder_name
+
+	for file in $PWD/*
+		do
+			if [ $file != $folder_name ]
+			then
+				mv $file ./$folder_name
+			else
+				continue
+			fi
+		done
+	echo "Success."
+else
+        for file in $PWD/*
+        	do
+        		mv $file/* ./
+        	done
+	echo "Success."
+fi
+}
+
+choice="NewFolder Outside"
+select option in $choice; do
+if [ $REPLY = 1 ];
+	then
+		extracter $REPLY
+	exit 1
+else
+		extracter $REPLY
+	exit 1
+fi
+done
