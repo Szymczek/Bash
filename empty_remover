@@ -6,25 +6,23 @@ remover(){
 
 if [ $REPLY = 1 ]
 	then
-	
 	for file in $PWD/*
 		do
 			if [ -d $file ]
-			then
+				then
 				rmdir $file
 			fi
 		done
 else
 	for file in $PWD/*
 	do
-	if [ ! -s $file ]
-	then
-		rm -f $file
-	fi
+		if [ ! -s $file ]
+			then
+			rm -f $file
+		fi
 	done
 fi
 }
-echo $PWD
 choice="Dir File"
 
 select option in $choice; do

@@ -3,26 +3,23 @@
 #Author: Szymon Szymczewski
 
 if [ "$1" ]; then
-#If Author exists
-if grep -Fxq "Author: Szymon Szymczewski" "$1"
-then
-echo "already exists"
-else
-echo "#Author: Szymon Szymczewski" | cat - $1 > temp && mv temp $1
-#Adding date 
-d=$(date +%d-%m-%Y)
-echo "#Data: $d" | cat - $1 > temp && mv temp $1
+	#If Author exists
+	if grep -Fxq "Author: Szymon Szymczewski" "$1"
+		then
+			echo "already exists"
+	else
+		echo "#Author: Szymon Szymczewski" | cat - $1 > temp && mv temp $1
+		
+		#Adding date 
+		d=$(date +%d-%m-%Y)
+		echo "#Data: $d" | cat - $1 > temp && mv temp $1
+	fi
+
+	#If Banshee exists
+	if grep -Fxq "#!/bin/bash" "$1"
+		then
+			echo "already exists"
+	else
+		echo "#!/bin/bash" | cat - $1 > temp && mv temp $1
+	fi
 fi
-
-#If Banshee exists
-if grep -Fxq "#!/bin/bash" "$1"
-then
-echo "already exists"
-else
-echo "#!/bin/bash" | cat - $1 > temp && mv temp $1
-fi
-#end if
-fi
-
-
-

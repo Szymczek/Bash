@@ -12,7 +12,7 @@ if [ $REPLY = 1 ];
 	for file in $PWD/*
 		do
 			if [ $file != $folder_name ]
-			then
+				then
 				mv $file ./$folder_name
 			else
 				continue
