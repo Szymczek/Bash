@@ -1,0 +1,32 @@
+#!/bin/bash
+#Data: 26-08-2021
+#Author: Szymon Szymczewski
+
+echo "Enter the car brand: "
+read car_brand
+
+webpage=$(curl https://www.otomoto.pl/osobowe/$car_brand/ > $car_brand.html)
+#firefox $car_brand.html
+brand_page=$car_brand.html
+#cat $brand_page | pup 'div[class="offer-item__wrapper"]'
+#cat $brand_page | pup '.offer-item.is-row .offer-title__link text{}'   
+#cat $brand_page | pup '.offer-item__subtitle.ds-title-complement json{}' 
+#cat $brand_page | pup 'span.offer-price__number.ds-price-number json{}' > price.txt
+#cat $brand_page | pup 'ul.ds-params-block text{}' > params.txt
+cat $brand_page | pup 'a.offer-title__link attr{href}' > links.txt
+
+counter=0
+for i in $(cat < links.txt); do
+	#each line/each link
+	curl $i > temp.html
+	printf '%*s\n' 80 "" | tr ' ' "X" >> nazwa.txt
+	echo "Link: $i " >> nazwa.txt  
+	#cat temp.html | pup 'div.offer-description__description text{}'  >> opis.txt
+	cat temp.html | pup 'h1.offer-title:first-child text{}' >> nazwa.txt
+	cat temp.html | pup 'span.offer-price__number text{}' >> nazwa.txt
+done
+
+
+
+
+

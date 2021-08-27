@@ -1,0 +1,39 @@
+#!/bin/bash
+#Data: 25-08-2021
+#Author: Szymon Szymczewski
+
+remover(){
+
+if [ $REPLY = 1 ]
+<	then
+	for file in $PWD/*
+		do
+			if [ -d $file ]
+				then
+				rmdir $file
+			fi
+		done
+else
+	for file in $PWD/*
+	do
+		if [ ! -s $file ]
+			then
+			rm -f $file
+		fi
+	done
+fi
+}
+choice="Dir File"
+
+select option in $choice; do
+if [ $REPLY = 1 ]
+         then
+                 remover $REPLY
+         exit 1
+else
+                 remover $REPLY
+         exit 1
+fi
+done
+
+
