@@ -15,9 +15,7 @@ brand_page=$car_brand.html
 #cat $brand_page | pup 'ul.ds-params-block text{}' > params.txt
 cat $brand_page | pup 'a.offer-title__link attr{href}' > links.txt
 
-counter=0
 for i in $(cat < links.txt); do
-	#each line/each link
 	curl $i > temp.html
 	printf '%*s\n' 80 "" | tr ' ' "X" >> nazwa.txt
 	echo "Link: $i " >> nazwa.txt  
