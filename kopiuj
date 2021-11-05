@@ -1,0 +1,41 @@
+#!/bin/bash
+#Autor: Szymon Szymczewski
+#Data: 5.11.2021
+#Projekt 1
+
+
+# Sprawdzanie braku argumentow
+if [ $# -eq 0 ]; then
+	echo "No arguments"
+	echo "Correct way: kopiuj ../fold_doc plik1 plik2"
+	exit 1
+fi
+
+dir="$1"
+# Sprawdzanie dostepu
+if [ ! -x $dir ]; then
+	echo "No permissions"
+fi
+
+# Jezeli katalog docelowy nie istnieje to tworzymy go, nie zglaszamy bledu
+if [ ! -d $dir ]; then
+	echo "Creating new folder - $dir"
+	mkdir $dir
+fi
+
+# Zaczynamy od drugiego argumentu 
+for file in "${@:2}"
+do
+	# Sprawdzanie czy istnieja pliki z argumentow
+	if [[ ! -f "$file" && ! -d "$file" ]]; then
+		echo "File ($file) doesnt exist"
+	fi
+	# Kopiowanie pliku/folderu do folderu docelowego
+	if  [ -f $file ]; then
+		cp $file $dir
+		mv $dir/$file $dir/$file.$USER
+	elif [ -d $file ]; then
+		tar cf $dir/$file.$USER.tar $file
+	fi	
+done
+
